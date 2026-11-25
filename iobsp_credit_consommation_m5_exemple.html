@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exemple commenté — module 5</title><style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+td{vertical-align:top}td:first-child{white-space:nowrap}.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}.tri .h,.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;text-transform:uppercase;letter-spacing:.05em}.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}@media(max-width:640px){.tri,.duo{grid-template-columns:1fr}}.enc,tr,.tri,.duo{break-inside:avoid}
+.enc p,.cols p{margin:6px 0}.enc.ok{background:#F1F7F3;border-left-color:var(--ok)}.enc.ok .t{color:var(--ok)}
+.cols{display:grid;gap:14px;margin:16px 0}.cols.c2{grid-template-columns:1fr 1fr}.cols.c3{grid-template-columns:repeat(3,1fr)}.cols.c4{grid-template-columns:repeat(4,1fr)}.cols.c5,.cols.c6{grid-template-columns:repeat(3,1fr)}
+.cols>div>.enc{margin:0;height:100%}.cols table{margin:0}
+p.src{font-size:12.5px;color:var(--gris-moyen);line-height:1.5}
+td,th{vertical-align:top}
+@media(max-width:760px){.cols.c2,.cols.c3,.cols.c4,.cols.c5,.cols.c6{grid-template-columns:1fr}}
+table.frise{table-layout:fixed;font-size:13px}.enc h3{margin:2px 0 8px;font-family:Georgia,serif;color:var(--prune-fonce);font-size:16px}
+.cols>div>.enc{margin:0}
+</style></head><body>
+<header class="bandeau"><div class="wrap"><div class="chapitre">IOBSP NIVEAU 2 · BLOC 2 · JOURNÉE 3 — MODULE 5</div><h1>Exemple commenté — une offre, quatre chiffres</h1><p class="sous">Du taux affiché au coût réel: décomposition complète d&#x27;un prêt personnel</p></div></header>
+<main class="wrap">
+<p>Le module 5 énonce des définitions. Cet exemple les fait fonctionner sur une seule offre, chiffre par chiffre, jusqu&#x27;à la question que le client posera vraiment: <b>combien cela me coûte-t-il ?</b></p>
+<div class="enc"><p><b>L&#x27;OFFRE PRÉSENTÉE À M ME LEFRANC</b></p><p>Montant total du crédit <b>12 000,00 €</b></p><table><tbody><tr><td>Nature</td><td>Prêt personnel, fonds libres d&#x27;emploi</td></tr><tr><td>Durée</td><td>48 mois</td></tr><tr><td>Taux débiteur fixe annuel</td><td><b>5,90%</b></td></tr><tr><td>Frais de dossier, payés au déblocage</td><td><b>150,00 €</b></td></tr><tr><td>Assurance facultative proposée</td><td>8,00 € / mois — non souscrite</td></tr></tbody></table><p><i>Document fictif à usage pédagogique. Montants arrondis au centime.</i></p></div>
+<table><tbody><tr><td></td><td><b>1 · Le taux affiché n&#x27;est pas le coût</b></td></tr></tbody></table>
+<p>M me Lefranc retient un chiffre: <b>5,90%</b>. C&#x27;est le <b>taux débiteur</b>, celui qui sert à calculer les intérêts sur le capital restant dû. Il ne dit rien des 150 € de frais de dossier.</p>
+<p>Le <b>TAEG</b>, lui, exprime le coût total en pourcentage annuel du montant emprunté. Ici il ressort à <b>6,75%</b> environ. L&#x27;écart de 0,85 point, ce sont exactement les frais de dossier ramenés à un taux.</p>
+<div class="enc"><span class="t">LA RÈGLE</span><p>On ne compare <b>jamais</b> deux offres sur le taux débiteur. Une offre affichant 5,50% de taux débiteur avec 400 € de frais est plus chère que celle-ci — et son taux paraît meilleur.</p></div>
+<table><tbody><tr><td></td><td><b>2 · Le calcul, poste par poste</b></td></tr></tbody></table>
+<table><thead><tr><th><b>Poste</b></th><th><b>Montant</b></th><th><b>Entre dans le TAEG ?</b></th></tr></thead><tbody><tr><td>Capital emprunté</td><td>12 000,00 €</td><td>— (c&#x27;est l&#x27;assiette)</td></tr><tr><td>Échéance mensuelle</td><td>281,27 €</td><td>—</td></tr><tr><td>Total des 48 échéances</td><td>13 500,98 €</td><td>—</td></tr><tr><td>Intérêts (13 500,98 − 12 000)</td><td>1 500,98 €</td><td><b>Oui</b></td></tr><tr><td>Frais de dossier</td><td>150,00 €</td><td><b>Oui</b></td></tr><tr><td>Assurance facultative non souscrite</td><td>0,00 €</td><td>Non — réellement facultative</td></tr><tr><td><b>Coût total du crédit</b></td><td><b>1 650,98 €</b></td><td></td></tr><tr><td><b>Montant total dû (12 000 + 1 650,98)</b></td><td><b>13 650,98 €</b></td><td></td></tr></tbody></table>
+<div class="enc ci"><span class="t">COÛT TOTAL OU MONTANT TOTAL DÛ ?</span><p><b>Coût total</b> = ce qui s&#x27;ajoute au capital: 1 650,98 €.<br><b>Montant total dû</b> = capital + coût total: 13 650,98 €.<br>C&#x27;est la seconde qu&#x27;il faut annoncer au client quand il demande « combien je rembourse en tout».</p></div>
+<div class="enc"><p><b>SI L&#x27;ASSURANCE AVAIT ÉTÉ EXIGÉE</b></p><p>Huit euros par mois pendant 48 mois représentent <b>384 €</b>. Le coût total passerait à <b>2 034,98 €</b> et le montant total dû à <b>14 034,98 €</b> — et ces 384 € devraient <b>entrer dans le TAEG</b>, qui grimperait en conséquence.<br>Attention au mot: une assurance présentée comme facultative mais dont la souscription <b>conditionne en fait l&#x27;octroi</b> n&#x27;est pas<br>facultative. Le qualificatif employé dans l&#x27;offre ne fait pas la règle.</p></div>
+<table><tbody><tr><td></td><td><b>3 · Le tableau d&#x27;amortissement</b></td></tr></tbody></table>
+<p>L&#x27;échéance ne bouge jamais: <b>281,27 €</b>. Sa <b>composition</b>, elle, s&#x27;inverse complètement, parce que les intérêts se calculent chaque mois sur le <b>capital restant dû</b>, qui diminue.</p>
+<table class="frise"><thead><tr><th><b>Éch.</b></th><th><b>Échéance</b></th><th><b>dont intérêts</b></th><th><b>dont capital</b></th><th><b>Capital restant dû</b></th></tr></thead><tbody><tr><td><b>1</b></td><td>281.27 €</td><td>59.00 €</td><td>222.27 €</td><td>11777.73 €</td></tr><tr><td><b>2</b></td><td>281.27 €</td><td>57.91 €</td><td>223.36 €</td><td>11554.37 €</td></tr><tr><td><b>3</b></td><td>281.27 €</td><td>56.81 €</td><td>224.46 €</td><td>11329.90 €</td></tr><tr><td><b>12</b></td><td>281.27 €</td><td>46.68 €</td><td>234.59 €</td><td>9259.43 €</td></tr><tr><td><b>24</b></td><td>281.27 €</td><td>32.46 €</td><td>248.81 €</td><td>6352.73 €</td></tr><tr><td><b>36</b></td><td>281.27 €</td><td>17.37 €</td><td>263.90 €</td><td>3269.81 €</td></tr><tr><td><b>47</b></td><td>281.27 €</td><td>2.75 €</td><td>278.52 €</td><td>279.89 €</td></tr><tr><td><b>48</b></td><td>281.27 €</td><td>1.38 €</td><td>279.89 €</td><td>0.00 €</td></tr></tbody></table>
+<div class="enc"><span class="t">CE QUE LE CLIENT NE SAIT PAS</span><p>À la première échéance, il rembourse <b>222 € de capital</b> et paie <b>59 € d&#x27;intérêts</b>. À la dernière, <b>280 € de capital</b> et <b>1,38 € d&#x27;intérêts</b>. Conséquence pratique: après un an de remboursement, il a versé 3 375 € mais son capital restant dû est encore de <b>9 259 €</b> — il n&#x27;a remboursé que 2 741 € de capital, soit 23% et non 25%. Savoir le lui dire avant qu&#x27;il ne le découvre évite une déception, et parfois un litige.</p></div>
+<table><tbody><tr><td></td><td><b>4 · Le piège de la durée</b></td></tr></tbody></table>
+<p>M me Lefranc trouve l&#x27;échéance un peu lourde et demande à passer sur <b>72 mois</b>. Voici les deux scénarios, à montant et taux débiteur identiques.</p>
+<div class="cols c2"><div><div class="enc"><h3>48 mois</h3><p>Échéance <b>281,27 €</b></p><p>Intérêts <b>1 500,98 €</b></p><p>Coût total <b>1 650,98 €</b></p><p>Montant total dû <b>13 650,98 €</b></p><p>TAEG <b>≈ 6,75%</b></p></div></div><div><div class="enc"><h3>72 mois</h3><p>Échéance <b>198,31 €</b></p><p>Intérêts <b>2 278,23 €</b></p><p>Coût total <b>2 428,23 €</b></p><p>Montant total dû <b>14 428,23 €</b></p><p>TAEG <b>≈ 6,53%</b></p></div></div></div>
+<div class="enc"><span class="t">LE POINT QUE LES CANDIDATS NE VOIENT PAS VENIR</span><p>L&#x27;échéance baisse de <b>82,96 €</b>: c&#x27;est réel, et c&#x27;est ce que la cliente ressent.<br>Le coût, lui, augmente de <b>777,25 €</b>: deux ans de plus se paient.<br>Et pourtant le <b>TAEG baisse</b>, de 6,75% à 6,53%. <b>L&#x27;offre la moins chère en taux est la plus chère en euros.</b></p><p>Pourquoi ? Parce que le TAEG est un <b>taux</b>, c&#x27;est-à-dire un coût rapporté au temps. Les 150 € de frais de dossier étalés sur six ans au lieu de quatre pèsent moins par année: le taux baisse, la facture monte.</p></div>
+<div class="enc"><span class="t">LA RÈGLE À TENIR, ET À EXPLIQUER</span><p>Le <b>TAEG compare deux offres à durée et montant identiques</b>. Dès que les durées diffèrent, c&#x27;est le <b>coût total</b> qu&#x27;il faut comparer, jamais le taux.<br>Un client qui choisit sur le seul TAEG choisira parfois l&#x27;offre la plus chère — et vous aurez à vous en expliquer, au titre de votre obligation d&#x27;explications adéquates.</p></div>
+<table><tbody><tr><td></td><td><b>5 · Le contrôle de l&#x27;usure</b></td></tr></tbody></table>
+<p>Dernière vérification avant de présenter l&#x27;offre. Le crédit porte sur 12 000 €, donc sur la tranche <b>supérieure à 6 000 €</b>. Le TAEG de 6,75% doit être <b>inférieur au seuil de l&#x27;usure</b> publié pour cette tranche et pour le trimestre en cours.</p>
+<table><thead><tr><th><b>Étape du raisonnement</b></th><th><b>Application au dossier</b></th></tr></thead><tbody><tr><td><b>1. Identifier la tranche</b></td><td>Le crédit à la consommation connaît trois tranches définies par le <b>montant</b>: ≤ 3 000 € · de 3 000 à 6 000 € · <b>&gt; 6 000 €</b>. Ici: la troisième</td></tr><tr><td><b>2. Relever le seuil du trimestre</b></td><td>Publié par la Banque de France au Journal officiel, et affiché par l&#x27;établissement. Il correspond au TAEG moyen du trimestre précédent <b>majoré d&#x27;un tiers</b></td></tr><tr><td><b>3. Comparer</b></td><td>Le TAEG de l&#x27;offre — <b>6,75%</b>, et non le taux débiteur de 5,90% — doit être strictement inférieur au seuil</td></tr><tr><td><b>4. En cas de dépassement</b></td><td>Le prêt est usuraire: délit puni de <b>2 ans d&#x27;emprisonnement et 300 000 € d&#x27;amende</b>, et imputation civile des perceptions excessives sur les intérêts puis le capital</td></tr></tbody></table>
+<div class="enc"><span class="t">POURQUOI AUCUN CHIFFRE DE SEUIL NE FIGURE ICI</span><p>Les seuils sont <b>révisés chaque trimestre</b>. Un chiffre inscrit dans un support pédagogique le rendrait faux en quelques semaines. Ce qu&#x27;il faut retenir, c&#x27;est la <b>méthode</b>: moyenne du trimestre précédent, majorée d&#x27;un tiers, par tranche de montant.</p></div>
+<table><tbody><tr><td></td><td><b>6 · Ce que vous annoncez à la cliente</b></td></tr></tbody></table>
+<div class="enc"><span class="t">LES QUATRE CHIFFRES, DANS CET ORDRE</span><p>• <b>281,27 € par mois</b>, pendant 48 mois — ce qu&#x27;elle paiera.</p><p>• <b>6,75% de TAEG</b> — l&#x27;indicateur de comparaison, à opposer aux offres concurrentes de même durée.</p><p>• <b>1 650,98 € de coût total</b> — ce que le crédit lui coûte.</p><p>• <b>13 650,98 € de montant total dû</b> — ce qu&#x27;elle sortira en tout.</p><p>Et si elle demande à allonger: lui donner les deux coûts totaux côte à côte, pas les deux TAEG.</p></div>
+<p><i>Document fictif à usage pédagogique. La cliente et l&#x27;offre sont imaginaires; les règles et les calculs ne le sont pas. Sources: code de la consommation, art. L. 311-1, L. 314-1</i> <i>et s., L. 314-6, L. 341-50 · loi n° 2010-737 du 1 er juillet 2010 (Lagarde) · Banque de France, seuils de l&#x27;usure · arrêté du 18 juillet 2022, annexe A, point B.1.</i></p>
+</main>
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</body></html>
